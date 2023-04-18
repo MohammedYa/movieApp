@@ -1,0 +1,56 @@
+<!-- ================================ -->
+<div class="row py-5">
+    <div class="col-md-4">
+        <div class="brdr mb-4 w-25"></div>
+        <h3>Trending <br> Movies <br> to Watch Now</h3>
+        <p class="text-muted">Most watched movies by days</p>
+        <div class="brdr my-4 w-100"></div>
+    </div>
+    <div class="col-md-2 text-center" *ngFor="let movie of moviesList " >
+        <a class="nav-link">
+            <div class="item position-relative">
+                <img [src]="imgBaseUrl+movie.poster_path" class="img-fluid my-2" alt="">
+                <h2 class="h6">{{movie.title}}</h2>
+                <span class="position-absolute top-0 end-0 bg-info p-2">{{movie.vote_average.toFixed(1)}}</span>
+            </div>
+        </a>
+    </div>
+</div>
+<!-- ================================= -->
+<div class="row py-5">
+    <div class="col-md-4">
+        <div class="brdr mb-4 w-25"></div>
+        <h3>Trending <br> Tv <br> to Watch Now</h3>
+        <p class="text-muted">Most watched movies by days</p>
+        <div class="brdr mt-4 w-100"></div>
+    </div>
+    <div class="col-md-2 text-center"*ngFor="let tv of tvshowsList" >
+        <a class="nav-link">
+        <div class="item position-relative">
+            <img  [src]="imgBaseUrl+tv.poster_path" class="img-fluid my-2" alt="">
+            <h2 class="h6">{{tv.name}}</h2>
+            <span class="position-absolute top-0 end-0 bg-info p-2">{{tv.vote_average.toFixed(1)}}</span>
+        </div>
+        </a>
+    </div>
+</div>
+<!-- ================================= -->
+<div class="row py-5">
+    <div class="col-md-4" >
+        <div class="brdr mb-4 w-25"></div>
+        <h3>Trending <br> person <br> to Watch Now</h3>
+        <p class="text-muted">Most watched people by days</p>
+        <div class="brdr mt-4 w-100"></div>
+    </div>
+    <div class="col-md-2 text-center"*ngFor="let person of peopleList" >
+        <a class="nav-link">
+        <div class="item">
+            <img [src]="imgBaseUrl + person.profile_path" class="img-fluid my-2" alt="">
+            <div class="notfound-img my-2"  *ngIf="person.profile_path == null">
+                <p>Sorry, there is no image to display</p>
+            </div>
+            <h2 class="h6">{{person.name}}</h2>
+        </div>
+        </a>
+    </div>
+</div>

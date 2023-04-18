@@ -1,0 +1,54 @@
+<div class="w-75 m-auto py-5">
+    <h3 class="text-center">Registeration form</h3>
+    <form  [formGroup]="registerForm" (ngSubmit)="supmitRegisterForm() ">
+
+        <div class="input-data my-2">
+            <label>firstName :</label>
+            <input type="text" class="form-control my-2" formControlName="first_name">
+            <div class="text-danger" *ngIf="registerForm.controls['first_name'].errors&&registerForm.controls['first_name'].touched">
+                <p *ngIf="registerForm.controls['first_name'].errors['required']">first name required</p>
+                <p *ngIf="registerForm.controls['first_name'].errors['minlength']">first name min length should be 3</p>
+                <p *ngIf="registerForm.controls['first_name'].errors['maxlength']">first name max length should be 10</p>
+            </div>
+        </div>
+        <div class="input-data my-2">
+            <label>lastName :</label>
+            <input type="text"  class="form-control my-2"formControlName="last_name">
+            <div class="text-danger" *ngIf="registerForm.controls['last_name'].errors&&registerForm.controls['last_name'].touched">
+                <p *ngIf="registerForm.controls['last_name'].errors['required']">last name required</p>
+                <p *ngIf="registerForm.controls['last_name'].errors['minlength']">last name min length should be 3</p>
+                <p *ngIf="registerForm.controls['last_name'].errors['maxlength']">last name max length should be 10</p>
+            </div>
+        </div>
+       
+        <div class="input-data my-2">
+            <label>Age :</label>
+            <input type="number" class="form-control my-2" formControlName="age">
+            <div class="text-danger" *ngIf="registerForm.controls['age'].errors&&registerForm.controls['age'].touched">
+                <p *ngIf="registerForm.controls['age'].errors['required']">age required</p>
+                <p *ngIf="registerForm.controls['age'].errors['min']" >age min should be 16</p>
+                <p *ngIf="registerForm.controls['age'].errors['max']">age max should be 60</p>
+            </div>
+        </div>
+        <div class="input-data my-2">
+            <label>email :</label>
+            <input type="email" class="form-control my-2" formControlName="email">
+            <div class="text-danger " *ngIf="registerForm.controls['email'].errors&&registerForm.controls['email'].touched">
+                <p *ngIf="registerForm.controls['email'].errors['required']">email required</p>
+                <p *ngIf="registerForm.controls['email'].errors['email']">email not valid</p>
+            </div>
+        </div>
+        <div class="input-data my-2">
+            <label>password :</label>
+            <input type="password" class="form-control my-2" formControlName="password" >
+            <div class="text-danger" *ngIf="registerForm.controls['password'].errors&&registerForm.controls['password'].touched">
+                <p *ngIf="registerForm.controls['password'].errors['required']">password required</p>
+                <p *ngIf="registerForm.controls['password'].errors['pattern']">password must start char a - z and contain number 1 2  3 ... </p>
+            </div>
+        </div>
+
+        <button [disabled]="registerForm.invalid" type="submit" class="btn btn-info my-3 float-end text-white">register</button>
+        <div class="clearfix"></div>
+
+    </form>
+</div>

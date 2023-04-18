@@ -1,0 +1,20 @@
+<div class="row py-5">
+    <input type="text" placeholder="search by name ..." class="form-control bg-transparent text-white mb-4 col-md-12">
+    <div class="col-md-2 text-center" *ngFor="let movie of moviesList">
+        <a class="nav-link">
+            <div class="item position-relative">
+                <img  [src]="imgBaseUrl + movie.backdrop_path  " class="img-fluid my-2" alt="">
+                <h2 class="h6">{{movie.title}}</h2>
+                <span class="position-absolute top-0 end-0 bg-info p-2">{{movie.vote_average.toFixed(1)}}</span>
+            </div>
+        </a>
+    </div>
+    
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-5 col-md-12">
+        <ul class="pagination">
+          
+          <li  class="page-item"><a class="page-link"></a></li>
+
+        </ul>
+    </nav>
+</div>
