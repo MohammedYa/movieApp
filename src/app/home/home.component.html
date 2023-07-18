@@ -7,7 +7,7 @@
         <div class="brdr my-4 w-100"></div>
     </div>
     <div class="col-md-2 text-center" *ngFor="let movie of moviesList " >
-        <a class="nav-link">
+        <a [routerLink]="['/details',movie.media_type,movie.id]" class="nav-link">
             <div class="item position-relative">
                 <img [src]="imgBaseUrl+movie.poster_path" class="img-fluid my-2" alt="">
                 <h2 class="h6">{{movie.title}}</h2>
@@ -25,7 +25,7 @@
         <div class="brdr mt-4 w-100"></div>
     </div>
     <div class="col-md-2 text-center"*ngFor="let tv of tvshowsList" >
-        <a class="nav-link">
+        <a  [routerLink]="['/details',tv.media_type,tv.id]" class="nav-link">
         <div class="item position-relative">
             <img  [src]="imgBaseUrl+tv.poster_path" class="img-fluid my-2" alt="">
             <h2 class="h6">{{tv.name}}</h2>
@@ -43,7 +43,7 @@
         <div class="brdr mt-4 w-100"></div>
     </div>
     <div class="col-md-2 text-center"*ngFor="let person of peopleList" >
-        <a class="nav-link">
+        <a [routerLink]="['/details',person.media_type,person.id]"  class="nav-link">
         <div class="item">
             <img [src]="imgBaseUrl + person.profile_path" class="img-fluid my-2" alt="">
             <div class="notfound-img my-2"  *ngIf="person.profile_path == null">

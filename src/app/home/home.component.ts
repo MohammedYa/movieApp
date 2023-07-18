@@ -7,7 +7,7 @@ import { GetMovieService } from '../get-movie.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  number:number=1
   moviesList: any[] = [];
   tvshowsList: any[] = [];
   peopleList: any[] = [];

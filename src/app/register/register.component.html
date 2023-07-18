@@ -1,54 +1,79 @@
-<div class="w-75 m-auto py-5">
-    <h3 class="text-center">Registeration form</h3>
-    <form  [formGroup]="registerForm" (ngSubmit)="supmitRegisterForm() ">
-
-        <div class="input-data my-2">
-            <label>firstName :</label>
-            <input type="text" class="form-control my-2" formControlName="first_name">
-            <div class="text-danger" *ngIf="registerForm.controls['first_name'].errors&&registerForm.controls['first_name'].touched">
-                <p *ngIf="registerForm.controls['first_name'].errors['required']">first name required</p>
-                <p *ngIf="registerForm.controls['first_name'].errors['minlength']">first name min length should be 3</p>
-                <p *ngIf="registerForm.controls['first_name'].errors['maxlength']">first name max length should be 10</p>
-            </div>
+<section class="register-form vh-100 d-flex justify-content-center align-items-center bg-main">
+    <div class="container p-0 shadow-lg bg-main">
+      <div class="row g-0 p-0">
+        <div class="img-register col-md-6 g-0 p-0 m-0">
+          <img src="../../assets/uIXF0sQGXOxQhbaEaKOi2VYlIL0.jpg" class="w-50 h-75" alt="form-img">
         </div>
-        <div class="input-data my-2">
-            <label>lastName :</label>
-            <input type="text"  class="form-control my-2"formControlName="last_name">
-            <div class="text-danger" *ngIf="registerForm.controls['last_name'].errors&&registerForm.controls['last_name'].touched">
-                <p *ngIf="registerForm.controls['last_name'].errors['required']">last name required</p>
-                <p *ngIf="registerForm.controls['last_name'].errors['minlength']">last name min length should be 3</p>
-                <p *ngIf="registerForm.controls['last_name'].errors['maxlength']">last name max length should be 10</p>
+        <div class="form col-md-6 g-0 p-2 m-0 text-center">
+          <h3 class="main-text text-secondary mb-4">Create My Account!</h3>
+          <form [formGroup]="registerForm" (ngSubmit)="handleRegister(registerForm)">
+  
+            <div class="name-controls d-flex justify-content-around mb-4">
+              <div class="name w-100 me-2 ">
+                <input type="text" formControlName="name" placeholder="Name" class="form-control bg-dark border-0 text-light mb-1">
+                <div class="alert alert-danger p-0 m-0" *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched">
+                  <ul>
+                    <li *ngIf="registerForm.get('name')?.getError('required')">the name is Required</li>
+                    <li  *ngIf="registerForm.get('name')?.getError('minlength')">the minimum length is 3 letters</li>
+                    <li *ngIf="registerForm.get('name')?.getError('maxlength')">the maximum length is 10 letters</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-        </div>
-       
-        <div class="input-data my-2">
-            <label>Age :</label>
-            <input type="number" class="form-control my-2" formControlName="age">
-            <div class="text-danger" *ngIf="registerForm.controls['age'].errors&&registerForm.controls['age'].touched">
-                <p *ngIf="registerForm.controls['age'].errors['required']">age required</p>
-                <p *ngIf="registerForm.controls['age'].errors['min']" >age min should be 16</p>
-                <p *ngIf="registerForm.controls['age'].errors['max']">age max should be 60</p>
+           <div class="email-control mb-4">
+            <input type="email" formControlName="email"  placeholder="Email Address" class="form-control bg-dark border-0  text-light">
+            <div class="alert alert-danger p-0" *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched">
+              <ul>
+                <li *ngIf="registerForm.get('email')?.getError('required')">email is required</li>
+                <li *ngIf="registerForm.get('email')?.getError('email')">this is invalid email format </li>
+              </ul>
             </div>
-        </div>
-        <div class="input-data my-2">
-            <label>email :</label>
-            <input type="email" class="form-control my-2" formControlName="email">
-            <div class="text-danger " *ngIf="registerForm.controls['email'].errors&&registerForm.controls['email'].touched">
-                <p *ngIf="registerForm.controls['email'].errors['required']">email required</p>
-                <p *ngIf="registerForm.controls['email'].errors['email']">email not valid</p>
+           </div>
+  
+            <div class="password-control mb-4">
+              <input type="password" placeholder="Password" formControlName="password"  class="form-control bg-dark border-0 text-light">
+              <div class="alert alert-danger p-0 m-0" *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched">
+                <ul>
+                  <li *ngIf="registerForm.get('password')?.getError('required')">password is required</li>
+                  <li *ngIf="registerForm.get('password')?.getError('pattern')">this is invalid password </li>
+                </ul>
+              </div>
             </div>
-        </div>
-        <div class="input-data my-2">
-            <label>password :</label>
-            <input type="password" class="form-control my-2" formControlName="password" >
-            <div class="text-danger" *ngIf="registerForm.controls['password'].errors&&registerForm.controls['password'].touched">
-                <p *ngIf="registerForm.controls['password'].errors['required']">password required</p>
-                <p *ngIf="registerForm.controls['password'].errors['pattern']">password must start char a - z and contain number 1 2  3 ... </p>
+            <div class="repassword-control mb-4">
+              <input type="password" placeholder="rePassword" formControlName="rePassword"  class="form-control bg-dark border-0 text-light">
+              <div class="alert alert-danger p-0 m-0" *ngIf="registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched">
+                <ul>
+                  <li *ngIf="registerForm.get('rePassword')?.getError('required')">password is required</li>
+                  <li *ngIf="registerForm.get('rePassword')?.getError('pattern')">this is invalid password </li>
+                  <li *ngIf="registerForm.get('rePassword')?.getError('repasswordMatch')">this repassword don't match password</li>
+                </ul>
+              </div>
             </div>
+            <div class="phone-control mb-4">
+              <input type="tel" formControlName="phone"  placeholder="phone" class="form-control bg-dark border-0 text-light">
+              <div class="alert alert-danger p-0 m-0  " *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched">
+                <ul>
+                  <li *ngIf="registerForm.get('phone')?.getError('required')">phone is required</li>
+                  <li *ngIf="registerForm.get('phone')?.getError('pattern')">this is invalid phone </li>
+                </ul>
+              </div>
+            </div>
+            <div class="alert alert-danger p-0 m-0" *ngIf="errorMessage">
+              {{errorMessage}}
+            </div>
+            <button class="btn register-form border-4 border-dark text-white w-100 mt-3" type="submit">
+  
+                <span *ngIf="!isRegister">Create Account</span>
+              <i *ngIf="isRegister" class="fa-solid fa-spinner fa-spin"></i>
+            </button>
+          </form>
+         <div class="line-containter px-4 mt-3 mb-3">
+          <div class="line bg-secondary w-100">
+  
+          </div>
+         </div>
+         <span class=" login-link text-light">Already a member? <a routerLink="/login" class="">Log In></a></span>
         </div>
-
-        <button [disabled]="registerForm.invalid" type="submit" class="btn btn-info my-3 float-end text-white">register</button>
-        <div class="clearfix"></div>
-
-    </form>
-</div>
+      </div>
+    </div>
+  </section>

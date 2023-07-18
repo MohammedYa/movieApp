@@ -15,6 +15,16 @@ getTv(){
     this.tvList = res.results
   })
 }
+getPage(eve:any){
+  this._GetMovieService.getTrendingMoviesPages("tv",eve.target.innerHTML).subscribe(
+    (res)=>{
+      this.tvList = res.results
+      
+    }
+  )
+  
+}
+
 constructor(private _GetMovieService:GetMovieService){
   this.imgBaseUrl=this._GetMovieService.imgBaseUrl
 }

@@ -14,8 +14,16 @@ export class PeopleComponent implements OnInit {
 getPerson(){
   this._GetMovieService.getTrendingMovies('person').subscribe((res)=>{
     this.peopleList = res.results
-    console.log(this.peopleList[0])
   })
+}
+getPage(eve:any){
+  this._GetMovieService.getTrendingMoviesPages("person",eve.target.innerHTML).subscribe(
+    (res)=>{
+      this.peopleList = res.results
+      
+    }
+  )
+  
 }
   constructor(private _GetMovieService:GetMovieService){
  this.imgBaseUrl=this._GetMovieService.imgBaseUrl

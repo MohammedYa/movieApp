@@ -1,7 +1,7 @@
 <div class="row py-5">
-    <input type="text" placeholder="search by name ..." class="form-control bg-transparent text-white mb-4 col-md-12">
-    <div class="col-md-2 text-center" *ngFor="let movie of moviesList">
-        <a class="nav-link">
+    <input  [(ngModel)] ="term" type="text" placeholder="search by name ..." class="form-control bg-transparent text-white mb-4 col-md-12">
+    <div class="col-md-2 text-center" *ngFor="let movie of moviesList|seach :term">
+        <a [routerLink]="['/details', movie.media_type, movie.id]"class="nav-link">
             <div class="item position-relative">
                 <img  [src]="imgBaseUrl + movie.backdrop_path  " class="img-fluid my-2" alt="">
                 <h2 class="h6">{{movie.title}}</h2>
@@ -13,8 +13,17 @@
     <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-5 col-md-12">
         <ul class="pagination">
           
-          <li  class="page-item"><a class="page-link"></a></li>
+            <li  (click)="getPage($event)"  class="page-item"><a class="page-link">1</a></li>
+            <li  (click)="getPage($event)"  class="page-item"><a class="page-link">2</a></li>
+            <li  (click)="getPage($event)"  class="page-item"><a class="page-link">3</a></li>
+            <li  (click)="getPage($event)"  class="page-item"><a class="page-link">4</a></li>
+            <li   (click)="getPage($event)" class="page-item"><a class="page-link">5</a></li>
+            <li   (click)="getPage($event)" class="page-item"><a class="page-link">6</a></li>
+            <li   (click)="getPage($event)" class="page-item"><a class="page-link">7</a></li>
+            <li   (click)="getPage($event)" class="page-item"><a class="page-link">8</a></li>
+            <li    (click)="getPage($event)"class="page-item"><a class="page-link">9</a></li>
+            <li    (click)="getPage($event)"class="page-item"><a class="page-link">10</a></li>
 
         </ul>
-    </nav>
+      </nav>
 </div>

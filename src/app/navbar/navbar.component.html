@@ -10,16 +10,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul  class="navbar-nav me-auto mb-2 mb-lg-0 flags">
           <li class="nav-item">
-            <a class="nav-link" routerLink="home">Home</a>
+            <a class="nav-link"*ngIf="isLogin" routerLink="home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="movie"  >Movies</a>
+            <a class="nav-link" *ngIf="isLogin"routerLink="movie"  >Movies</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"  routerLink="tv" >Tv show</a>
+            <a class="nav-link" *ngIf="isLogin" routerLink="tv" >Tv show</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"  routerLink="people" >People</a>
+            <a class="nav-link"*ngIf="isLogin"  routerLink="people" >People</a>
           </li>
           <li class="nav-item">
             <a class="nav-link"  routerLink="about" >About</a>
@@ -35,16 +35,16 @@
                 <i class="fab fa-youtube"></i>
             </div>
             
-            <li  class="nav-item">
+            <li  *ngIf="!isLogin"class="nav-item">
               <a class="nav-link" routerLink="login" >Login</a>
             </li>
-            <li  class="nav-item">
+            <li *ngIf="!isLogin" class="nav-item">
               <a class="nav-link" routerLink="register" >Register</a>
             </li>
   
             
-            <li  class="nav-item">
-              <a class="nav-link cursor" >Logout</a>
+            <li *ngIf="isLogin" class="nav-item">
+              <a class="nav-link cursor"(click)="logOut()" >Logout</a>
             </li>
           </ul>
       </div>

@@ -17,6 +17,7 @@ import {HttpClientModule}from  '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { SeachPipe } from './seach.pipe';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { CommonModule } from '@angular/common';
     NotfoundComponent,
     DetailsComponent,
     MovieComponent,
-    AboutComponent
+    AboutComponent,
+    SeachPipe
   ],
   imports: [
     BrowserModule,

@@ -8,15 +8,18 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { PeopleComponent } from './people/people.component';
 import { RegisterComponent } from './register/register.component';
 import { TvComponent } from './tv/tv.component';
+import { UserGuard } from './user.guard';
+import { DetailsComponent } from './details/details.component';
 
 const routes: Routes = [
 { path: '', redirectTo: 'home', pathMatch: 'full' },
 {path:"login",component:LoginComponent},
 {path:"register",component:RegisterComponent},
-{path:"home",component:HomeComponent},
-{path:"tv",component:TvComponent},
-{path:"people",component:PeopleComponent},
-{path:"movie",component:MovieComponent},
+{path:"home",canActivate:[UserGuard],component:HomeComponent},
+{path:"tv",canActivate:[UserGuard],component:TvComponent},
+{path:"people",canActivate:[UserGuard],component:PeopleComponent},
+{path:"movie",canActivate:[UserGuard],component:MovieComponent},
+{path:"details/:media_tybe/:id",canActivate:[UserGuard],component:DetailsComponent},
 {path:"about",component:AboutComponent},
 {path:"**",component:NotfoundComponent}
 ];

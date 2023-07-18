@@ -1,87 +1,69 @@
-import { Component,OnInit } from '@angular/core';
-import{FormControl,FormGroup,Validators}from '@angular/forms'
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl ,Validators} from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { ToastrService } from 'ngx-toastr';
-
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export class RegisterComponent implements OnInit{
-
-  registerForm:FormGroup=new FormGroup(
+export class RegisterComponent {
+  errorMessage:any = null;
+  isRegister!:boolean;
+  constructor(private _AuthService:AuthService,private _Router:Router)
+  {
+    if(localStorage.getItem("userToken")!==null)
     {
-      'first_name':new FormControl( null,[Validators.required,Validators.maxLength(10),Validators.minLength(3)]),
-      'last_name':new FormControl( null,[Validators.required,Validators.maxLength(10),Validators.minLength(3)]),
-      'age':new FormControl( null,[Validators.required,Validators.max(60),Validators.min(16)]),
-      'email':new FormControl( null,[Validators.required,Validators.email]),
-      'password':new FormControl( null,[Validators.required,Validators.pattern(/^[a-z][0-9]{3}$/)])
-
-  })
-supmitRegisterForm () {
-  if(this.registerForm.invalid){
-    return;
-  }
-  else{
-    this._AuthService.register(this.registerForm.value).subscribe(
-     (response)=>{
-      if(response.message == 'success'){
-        this.toastr.error(response.message, ' re!');
-
-        this.toastr.success('register success', '')
-        this._Router.navigateByUrl('/login')
-     }
-     else{
-      this.toastr.error(response.message, 'error message!')
-
-     }
+      _Router.navigate(['home']);
     }
- );
+  }
+registerForm:FormGroup = new FormGroup({
+  name:new FormControl(null,[Validators.required, Validators.minLength(3),Validators.maxLength(10)]),
+  email:new FormControl(null,[Validators.required, Validators.email]),
+  password:new FormControl(null,[Validators.required,Validators.pattern(/^[A-Z][a-z0-9]{5,10}$/)]),
+  rePassword:new FormControl(null,[Validators.required,Validators.pattern(/^[A-Z][a-z0-9]{5,10}$/)]),
+  phone:new FormControl(null,[Validators.required, Validators.pattern(/^01[0215][0-9]{8}/)]),
 
-}
- 
-}
+},{validators: this.passwordMAtch})
 
+  passwordMAtch(registerForm:any)
+  {
+    let passwordControl = registerForm?.get('password');
+    let rePasswordControl = registerForm?.get('rePassword');
+    if(passwordControl?.value === rePasswordControl?.value)
+    {
+      return null;
+    }
+    else{
+      rePasswordControl?.setErrors({repasswordMatch:'repassword donot match'});
+      return {repasswordMatch:'repassword donot match'};
+    }
+  }
 
+  handleRegister(registerForm:FormGroup)
+  {
 
+    if(registerForm.valid)
+    {
+      this.isRegister =true;
+      this._AuthService.register(registerForm.value).subscribe(
+        {
 
+          next:(response)=>{
+            this.isRegister=false;
+            if(response.message ==='success')
+            {
+              this._Router.navigate(['/login'])
 
+            }
+          },
+          error:(err)=>{
+            this.isRegister=false;
 
-
-
-
-
-
-
-
-
-
-
-
-
-  constructor(private _Router:Router,private _AuthService:AuthService,private toastr: ToastrService){}
-
-  ngOnInit(): void {
+            this.errorMessage = err.error.message;
+          }
+        }
+      )
+    }
   }
 }

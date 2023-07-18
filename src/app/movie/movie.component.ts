@@ -12,12 +12,21 @@ export class MovieComponent implements OnInit{
   moviesList: any[] = [];
   imgBaseUrl: string = ''
   term:string = ''
+
 getMovie(){
   this._GetMovieService.getTrendingMovies('movie').subscribe((res)=>{
     this.moviesList = res.results
   })
 }
-
+getPage(eve:any){
+  this._GetMovieService.getTrendingMoviesPages("movie",eve.target.innerHTML).subscribe(
+    (res)=>{
+      this.moviesList = res.results
+      
+    }
+  )
+  
+}
 
 
 

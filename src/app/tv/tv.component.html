@@ -1,6 +1,6 @@
 <div class="row py-5">
     <div class="col-md-2 text-center" *ngFor="let tv of tvList ">
-        <a class="nav-link">
+        <a  [routerLink]="['/details',tv.media_type,tv.id]"class="nav-link">
         <div class="item position-relative">
             <img [src]="imgBaseUrl + tv.poster_path" class="img-fluid my-2" alt="">
             <h2 class="h6">{{tv.name}}</h2>
@@ -9,11 +9,20 @@
         </a>
     </div>
 
-    <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-5">
-        <ul class="pagination">
-          
-          <li  class="page-item"><a class="page-link"></a></li>
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-5 col-md-12">
+      <ul class="pagination">
+        
+          <li  (click)="getPage($event)"  class="page-item"><a class="page-link">1</a></li>
+          <li  (click)="getPage($event)"  class="page-item"><a class="page-link">2</a></li>
+          <li  (click)="getPage($event)"  class="page-item"><a class="page-link">3</a></li>
+          <li  (click)="getPage($event)"  class="page-item"><a class="page-link">4</a></li>
+          <li   (click)="getPage($event)" class="page-item"><a class="page-link">5</a></li>
+          <li   (click)="getPage($event)" class="page-item"><a class="page-link">6</a></li>
+          <li   (click)="getPage($event)" class="page-item"><a class="page-link">7</a></li>
+          <li   (click)="getPage($event)" class="page-item"><a class="page-link">8</a></li>
+          <li    (click)="getPage($event)"class="page-item"><a class="page-link">9</a></li>
+          <li    (click)="getPage($event)"class="page-item"><a class="page-link">10</a></li>
 
-        </ul>
-      </nav>
+      </ul>
+    </nav>
 </div>
